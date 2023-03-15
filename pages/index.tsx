@@ -3,6 +3,32 @@ import Image from 'next/image'
 import { useState } from 'react'
 import styled from 'styled-components'
 
+const creditsData = [
+  ['Home Page', 'Deejunae Lewis'],
+  ['Home Page', 'Rafael Almeida'],
+  ['Aretha Franklin', 'Edgar Pacheco'],
+  ['Beyonce Knowles Carter', 'Aditi Khedkar'],
+  ['Bob Marley', 'Dylan Sturr'],
+  ['Charles Mingus', 'Andy Zhu'],
+  ['Desmond Daniel Amofah', 'Erick Jacomes'],
+  ['Frederick Douglass', 'Kevin Huang'],
+  ['Guion Bluford', 'Alex Pillar'],
+  ['Henrietta Lacks', 'Chelsey Tang'],
+  ['Jackie Robinson', 'John Inoa'],
+  ['Jesse Owens', 'Eric Bruckenstein'],
+  ['Malcolm X', 'Nate Kim'],
+  ['Marsha P. Johnson', 'Nicholas Panlilio'],
+  ['Michael Jackson', 'Will Kim'],
+  ['N/A', 'Aaron Perrotta'],
+  ['Shirley Chisholm', 'Mackenzie Nielsen'],
+  ['Josephine Baker', 'Nina Ignacio'],
+  ['Barack Obama', 'Tristan Florencio'],
+  ['Stevie Wonder', 'Miles Neal'],
+  ['Toussaint Louverture', 'Jose Tabuena'],
+  ['W. E. B. Du Bois', 'Cory Zhou'],
+]
+creditsData.sort()
+
 const Home = styled.div`
   display: flex;
   justify-content: center;
@@ -41,7 +67,7 @@ export default function IndexPage() {
           </Typography.Title>
         ) : (
           <Typography.Text
-            style={{ color: 'white', textAlign: 'center', width: '300px' }}
+            style={{ color: 'white', textAlign: 'center', width: '197px' }}
           >
             This is a collaborative project by the B-9/10 Web Design class to
             celebrate Black History Month
@@ -51,7 +77,7 @@ export default function IndexPage() {
         <Space style={{ marginTop: '16px' }}>
           <Button>SEE THE STARS</Button>
           <Button onClick={() => setIsShowingTitle(!isShowingTitle)}>
-            ABOUT
+            {isShowingTitle ? 'About' : 'Back'}
           </Button>
         </Space>
       </Home>
@@ -59,163 +85,27 @@ export default function IndexPage() {
       <Constellations></Constellations>
 
       <Credits>
-        <Row>
-          <Col
-            span={8}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              textAlign: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Typography.Title style={{ color: 'white' }}>
-              Home Page
-            </Typography.Title>
+        <Typography.Title style={{ color: 'white' }}>Credits</Typography.Title>
+
+        <Row gutter={4}>
+          <Col span={12} style={{ textAlign: 'right', fontWeight: 'bold' }}>
             <Space direction="vertical">
-              <Typography.Text style={{ color: 'white' }}>
-                Deejuanae Lewis
-              </Typography.Text>
-              <Typography.Text style={{ color: 'white' }}>
-                Rafael Almeida
-              </Typography.Text>
+              {creditsData.map((l, i) => (
+                <Typography.Text key={i} style={{ color: 'white' }}>
+                  {l[0]}
+                </Typography.Text>
+              ))}
             </Space>
           </Col>
 
-          <Col span={16} style={{ textAlign: 'center' }}>
-            <Typography.Title style={{ color: 'white' }}>
-              Individual Pages
-            </Typography.Title>
-            <Row gutter={4}>
-              <Col span={12} style={{ textAlign: 'right', fontWeight: 'bold' }}>
-                <Space direction="vertical">
-                  <Typography.Text style={{ color: 'white' }}>
-                    Eric Bruckenstein
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Tristan Florencio
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Kevin Huang
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Nina Ignacio
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    John Inoa
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Erick Jacomes
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Aditi Khedkar
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Nate Kim
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Will Kim
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Miles Neal
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Mackenzie Nielsen
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Edgar Pacheco
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Nicholas Panlilio
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Aaron Perrotta
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Alex Pillar
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Dylan Sturr
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Jose Tabuena
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Chelsey Tang
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Cory Zhou
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Andy Zhu
-                  </Typography.Text>
-                </Space>
-              </Col>
-              <Col span={12} style={{ textAlign: 'left' }}>
-                <Space direction="vertical">
-                  <Typography.Text style={{ color: 'white' }}>
-                    Jesse Owens
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    N/A
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Frederick Douglass
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    N/A
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Jackie Robinson
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Desmond Daniel Amofah
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Beyonce Knowles Carter
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Malcolm X
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Michael Jackson
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Stevie Wonder
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    N/A
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Aretha Franklin
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Marsha P. Johnson
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    N/A
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Guion Bluford
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Bob Marley
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Toussaint Louverture
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Henrietta Lacks
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    W. E. B. Du Bois
-                  </Typography.Text>
-                  <Typography.Text style={{ color: 'white' }}>
-                    Charles Mingus
-                  </Typography.Text>
-                </Space>
-              </Col>
-            </Row>
+          <Col span={12} style={{ textAlign: 'left' }}>
+            <Space direction="vertical">
+              {creditsData.map((l, i) => (
+                <Typography.Text key={i} style={{ color: 'white' }}>
+                  {l[1]}
+                </Typography.Text>
+              ))}
+            </Space>
           </Col>
         </Row>
       </Credits>
