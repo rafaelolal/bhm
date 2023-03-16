@@ -1,3 +1,4 @@
+import Star from '@/components/star'
 import { Typography, Button, Space, Row, Col } from 'antd'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -6,11 +7,12 @@ import styled from 'styled-components'
 const creditsData = [
   ['Home Page', 'Deejunae Lewis'],
   ['Home Page', 'Rafael Almeida'],
+  ['Server', 'Aaron Perrotta'],
   ['Aretha Franklin', 'Edgar Pacheco'],
   ['Beyonce Knowles Carter', 'Aditi Khedkar'],
   ['Bob Marley', 'Dylan Sturr'],
   ['Charles Mingus', 'Andy Zhu'],
-  ['Desmond Daniel Amofah', 'Erick Jacomes'],
+  ['Desmond Daniel "Etika" Amofah', 'Erick Jacomes'],
   ['Frederick Douglass', 'Kevin Huang'],
   ['Guion Bluford', 'Alex Pillar'],
   ['Henrietta Lacks', 'Chelsey Tang'],
@@ -19,7 +21,6 @@ const creditsData = [
   ['Malcolm X', 'Nate Kim'],
   ['Marsha P. Johnson', 'Nicholas Panlilio'],
   ['Michael Jackson', 'Will Kim'],
-  ['N/A', 'Aaron Perrotta'],
   ['Shirley Chisholm', 'Mackenzie Nielsen'],
   ['Josephine Baker', 'Nina Ignacio'],
   ['Barack Obama', 'Tristan Florencio'],
@@ -82,10 +83,19 @@ export default function IndexPage() {
         </Space>
       </Home>
 
-      <Constellations></Constellations>
+      <Constellations>
+        {creditsData.map((l, i) => (
+          <Star
+            key={i}
+            lastName={l[0].split(' ')[l[0].split(' ').length - 1].toLowerCase()}
+          />
+        ))}
+      </Constellations>
 
       <Credits>
-        <Typography.Title style={{ color: 'white' }}>Credits</Typography.Title>
+        <Typography.Title style={{ color: 'white', textAlign: 'center' }}>
+          Credits
+        </Typography.Title>
 
         <Row gutter={4}>
           <Col span={12} style={{ textAlign: 'right', fontWeight: 'bold' }}>
