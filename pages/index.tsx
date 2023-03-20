@@ -1,6 +1,7 @@
 import Star from '@/components/star'
 import { Typography, Button, Space, Row, Col } from 'antd'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState } from 'react'
 import styled from 'styled-components'
 
@@ -9,7 +10,7 @@ const pageData = [
   ['Beyonce Knowles Carter', 'Aditi Khedkar'],
   ['Bob Marley', 'Dylan Sturr'],
   ['Charles Mingus', 'Andy Zhu'],
-  ['Desmond Daniel "Etika" Amofah', 'Erick Jacomes'],
+  ['Desmond "Etika" Amofah', 'Erick Jacomes'],
   ['Frederick Douglass', 'Kevin Huang'],
   ['Guion Bluford', 'Alex Pillar'],
   ['Henrietta Lacks', 'Chelsey Tang'],
@@ -98,14 +99,17 @@ export default function IndexPage() {
         )}
 
         <Space style={{ marginTop: '16px' }}>
-          <Button>SEE THE STARS</Button>
+          <Link href="#stars" scroll={false}>
+            <Button>SEE THE STARS</Button>
+          </Link>
+
           <Button onClick={() => setIsShowingTitle(!isShowingTitle)}>
             {isShowingTitle ? 'About' : 'Back'}
           </Button>
         </Space>
       </Home>
 
-      <Constellations>
+      <Constellations id="stars">
         {getLastNames(pageData).map((name: string, i: number) => (
           <Star key={i} lastName={name} />
         ))}
