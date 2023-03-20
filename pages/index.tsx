@@ -1,18 +1,16 @@
 import Star from '@/components/star'
 import { Typography, Button, Space, Row, Col } from 'antd'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState } from 'react'
 import styled from 'styled-components'
 
-const creditsData = [
-  ['Home Page', 'Deejunae Lewis'],
-  ['Home Page', 'Rafael Almeida'],
-  ['Server', 'Aaron Perrotta'],
+const pageData = [
   ['Aretha Franklin', 'Edgar Pacheco'],
   ['Beyonce Knowles Carter', 'Aditi Khedkar'],
   ['Bob Marley', 'Dylan Sturr'],
   ['Charles Mingus', 'Andy Zhu'],
-  ['Desmond Daniel "Etika" Amofah', 'Erick Jacomes'],
+  ['Desmond "Etika" Amofah', 'Erick Jacomes'],
   ['Frederick Douglass', 'Kevin Huang'],
   ['Guion Bluford', 'Alex Pillar'],
   ['Henrietta Lacks', 'Chelsey Tang'],
@@ -28,6 +26,12 @@ const creditsData = [
   ['Toussaint Louverture', 'Jose Tabuena'],
   ['W. E. B. Du Bois', 'Cory Zhou'],
 ]
+
+const creditsData = pageData.concat([
+  ['Home Page', 'Deejunae Lewis'],
+  ['Home Page', 'Rafael Almeida'],
+  ['Server', 'Aaron Perrotta'],
+])
 creditsData.sort()
 
 const Home = styled.div`
@@ -52,6 +56,25 @@ const Credits = styled.div`
 export default function IndexPage() {
   const [isShowingTitle, setIsShowingTitle] = useState(true)
 
+  const getLastNames = (pageData: string[][]) => {
+    const lastNames: string[] = []
+    for (const page of pageData) {
+      const name = page[0]
+      if (name == 'Beyonce Knowles Carter') {
+        lastNames.push('beyonce')
+      } else if (name == 'W. E. B. Du Bois') {
+        lastNames.push('dubois')
+      } else if (name == 'Desmond Daniel "Etika" Amofah') {
+        lastNames.push('etika')
+      } else {
+        lastNames.push(
+          name.split(' ')[name.split(' ').length - 1].toLowerCase()
+        )
+      }
+    }
+    return lastNames
+  }
+
   return (
     <>
       <Home>
@@ -70,25 +93,25 @@ export default function IndexPage() {
           <Typography.Text
             style={{ color: 'white', textAlign: 'center', width: '197px' }}
           >
-            This is a collaborative project by the B-9/10 Web Design class to
-            celebrate Black History Month
+            This is a collaborative project between the B-9/10 Web Design class
+            to celebrate Black History Month
           </Typography.Text>
         )}
 
         <Space style={{ marginTop: '16px' }}>
-          <Button>SEE THE STARS</Button>
+          <Link href="#stars" scroll={false}>
+            <Button>SEE THE STARS</Button>
+          </Link>
+
           <Button onClick={() => setIsShowingTitle(!isShowingTitle)}>
             {isShowingTitle ? 'About' : 'Back'}
           </Button>
         </Space>
       </Home>
 
-      <Constellations>
-        {creditsData.map((l, i) => (
-          <Star
-            key={i}
-            lastName={l[0].split(' ')[l[0].split(' ').length - 1].toLowerCase()}
-          />
+      <Constellations id="stars">
+        {getLastNames(pageData).map((name: string, i: number) => (
+          <Star key={i} lastName={name} />
         ))}
       </Constellations>
 
