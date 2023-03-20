@@ -4,10 +4,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import styled from 'styled-components'
 
-const creditsData = [
-  ['Home Page', 'Deejunae Lewis'],
-  ['Home Page', 'Rafael Almeida'],
-  ['Server', 'Aaron Perrotta'],
+const pageData = [
   ['Aretha Franklin', 'Edgar Pacheco'],
   ['Beyonce Knowles Carter', 'Aditi Khedkar'],
   ['Bob Marley', 'Dylan Sturr'],
@@ -28,6 +25,12 @@ const creditsData = [
   ['Toussaint Louverture', 'Jose Tabuena'],
   ['W. E. B. Du Bois', 'Cory Zhou'],
 ]
+
+const creditsData = pageData.concat([
+  ['Home Page', 'Deejunae Lewis'],
+  ['Home Page', 'Rafael Almeida'],
+  ['Server', 'Aaron Perrotta'],
+])
 creditsData.sort()
 
 const Home = styled.div`
@@ -52,6 +55,25 @@ const Credits = styled.div`
 export default function IndexPage() {
   const [isShowingTitle, setIsShowingTitle] = useState(true)
 
+  const getLastNames = (pageData: string[][]) => {
+    const lastNames: string[] = []
+    for (const page of pageData) {
+      const name = page[0]
+      if (name == 'Beyonce Knowles Carter') {
+        lastNames.push('beyonce')
+      } else if (name == 'W. E. B. Du Bois') {
+        lastNames.push('dubois')
+      } else if (name == 'Desmond Daniel "Etika" Amofah') {
+        lastNames.push('etika')
+      } else {
+        lastNames.push(
+          name.split(' ')[name.split(' ').length - 1].toLowerCase()
+        )
+      }
+    }
+    return lastNames
+  }
+
   return (
     <>
       <Home>
@@ -70,8 +92,8 @@ export default function IndexPage() {
           <Typography.Text
             style={{ color: 'white', textAlign: 'center', width: '197px' }}
           >
-            This is a collaborative project by the B-9/10 Web Design class to
-            celebrate Black History Month
+            This is a collaborative project between the B-9/10 Web Design class
+            to celebrate Black History Month
           </Typography.Text>
         )}
 
@@ -84,11 +106,8 @@ export default function IndexPage() {
       </Home>
 
       <Constellations>
-        {creditsData.map((l, i) => (
-          <Star
-            key={i}
-            lastName={l[0].split(' ')[l[0].split(' ').length - 1].toLowerCase()}
-          />
+        {getLastNames(pageData).map((name: string, i: number) => (
+          <Star key={i} lastName={name} />
         ))}
       </Constellations>
 

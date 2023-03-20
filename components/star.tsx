@@ -1,7 +1,6 @@
 import Image from 'next/image'
 
 export default function Star(props: { lastName: string }) {
-  console.log({ l: props.lastName })
   return (
     <>
       <Image
