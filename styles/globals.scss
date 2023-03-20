@@ -1,0 +1,48 @@
+@import './node_modules/bootstrap/scss/bootstrap.scss';
+
+.backdrop {
+  background-color: black;
+  background-image: url('/images/stars.svg');
+  background-repeat: repeat;
+  background-size: 70% auto;
+}
+
+.star {
+  object-position: top;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: brightness(0) invert(1);
+  width: 17px;
+  height: 17px;
+
+  transition: 0.3s ease-out;
+}
+
+.star:hover {
+  transform: scale(7);
+  filter: brightness(1) invert(0);
+}
+
+.star:nth-child(3n + 1):hover {
+  box-shadow: 0px 0px 15px 6px rgb(230, 12, 11);
+}
+
+.star:nth-child(3n + 1) {
+  box-shadow: 0px 0px 15px 1px rgb(230, 12, 11);
+}
+
+.star:nth-child(3n + 2):hover {
+  box-shadow: 0px 0px 15px 6px rgb(228, 183, 1);
+}
+
+.star:nth-child(3n + 2) {
+  box-shadow: 0px 0px 15px 1px rgb(228, 183, 1);
+}
+
+.star:nth-child(3n + 3):hover {
+  box-shadow: 0px 0px 15px 6px rgb(85, 157, 63);
+}
+
+.star:nth-child(3n + 3) {
+  box-shadow: 0px 0px 15px 1px rgb(85, 157, 63);
+}
