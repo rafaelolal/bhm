@@ -6,33 +6,132 @@ import { useState } from 'react'
 import styled from 'styled-components'
 
 const pageData = [
-  ['Aretha Franklin', 'Edgar Pacheco'],
-  ['Beyonce Knowles Carter', 'Aditi Khedkar'],
-  ['Bob Marley', 'Dylan Sturr'],
-  ['Charles Mingus', 'Andy Zhu'],
-  ['Desmond "Etika" Amofah', 'Erick Jacomes'],
-  ['Frederick Douglass', 'Kevin Huang'],
-  ['Guion Bluford', 'Alex Pillar'],
-  ['Henrietta Lacks', 'Chelsey Tang'],
-  ['Jackie Robinson', 'John Inoa'],
-  ['Jesse Owens', 'Eric Bruckenstein'],
-  ['Malcolm X', 'Nate Kim'],
-  ['Marsha P. Johnson', 'Nicholas Panlilio'],
-  ['Michael Jackson', 'Will Kim'],
-  ['Shirley Chisholm', 'Mackenzie Nielsen'],
-  ['Josephine Baker', 'Nina Ignacio'],
-  ['Barack Obama', 'Tristan Florencio'],
-  ['Stevie Wonder', 'Miles Neal'],
-  ['Toussaint Louverture', 'Jose Tabuena'],
-  ['W. E. B. Du Bois', 'Cory Zhou'],
+  {
+    page: 'Aretha Franklin',
+    author: 'Edgar Pacheco',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Beyonce Knowles Carter',
+    author: 'Aditi Khedkar',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Bob Marley',
+    author: 'Dylan Sturr',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Charles Mingus',
+    author: 'Andy Zhu',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Desmond "Etika" Amofah',
+    author: 'Erick Jacomes',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Frederick Douglass',
+    author: 'Kevin Huang',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Guion Bluford',
+    author: 'Alex Pillar',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Henrietta Lacks',
+    author: 'Chelsey Tang',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Jackie Robinson',
+    author: 'John Inoa',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Jesse Owens',
+    author: 'Eric Bruckenstein',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Malcolm X',
+    author: 'Nate Kim',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Marsha P. Johnson',
+    author: 'Nicholas Panlilio',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Michael Jackson',
+    author: 'Will Kim',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Shirley Chisholm',
+    author: 'Mackenzie Nielsen',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Josephine Baker',
+    author: 'Nina Ignacio',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Barack Obama',
+    author: 'Tristan Florencio',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Stevie Wonder',
+    author: 'Miles Neal',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'Toussaint Louverture',
+    author: 'Jose Tabuena',
+    top: '0%',
+    left: '0%',
+  },
+  {
+    page: 'W. E. B. Du Bois',
+    author: 'Cory Zhou',
+    top: '0%',
+    left: '0%',
+  },
 ]
+pageData.sort((a, b) => a.page.localeCompare(b.page))
 
-const creditsData = pageData.concat([
-  ['Home Page', 'Deejunae Lewis'],
-  ['Home Page', 'Rafael Almeida'],
-  ['Server', 'Aaron Perrotta'],
-])
-creditsData.sort()
+const creditsData = pageData
+  .map((data) => {
+    return { page: data.page, author: data.author }
+  })
+  .concat([
+    { page: 'Home Page', author: 'Deejunae Lewis' },
+    { page: 'Home Page', author: 'Rafael Almeida' },
+    { page: 'Server', author: 'Aaron Perrotta' },
+  ])
 
 const Home = styled.div`
   display: flex;
@@ -44,6 +143,7 @@ const Home = styled.div`
 
 const Constellations = styled.div`
   height: 100vh;
+  position: relative;
 `
 
 const Credits = styled.div`
@@ -56,23 +156,26 @@ const Credits = styled.div`
 export default function IndexPage() {
   const [isShowingTitle, setIsShowingTitle] = useState(true)
 
-  const getLastNames = (pageData: string[][]) => {
-    const lastNames: string[] = []
-    for (const page of pageData) {
-      const name = page[0]
-      if (name == 'Beyonce Knowles Carter') {
-        lastNames.push('beyonce')
-      } else if (name == 'W. E. B. Du Bois') {
-        lastNames.push('dubois')
-      } else if (name == 'Desmond Daniel "Etika" Amofah') {
-        lastNames.push('etika')
+  const getStarData = (
+    pageData: { page: string; author: string; top: string; left: string }[]
+  ) => {
+    const data: { page: string; top: string; left: string }[] = []
+    for (const pageDatum of pageData) {
+      const starData = { page: '', top: pageDatum.top, left: pageDatum.left }
+      if (pageDatum.page == 'Beyonce Knowles Carter') {
+        starData['page'] = 'beyonce'
+      } else if (pageDatum.page == 'W. E. B. Du Bois') {
+        starData['page'] = 'dubois'
+      } else if (pageDatum.page == 'Desmond Daniel "Etika" Amofah') {
+        starData['page'] = 'etika'
       } else {
-        lastNames.push(
-          name.split(' ')[name.split(' ').length - 1].toLowerCase()
-        )
+        starData['page'] = pageDatum.page
+          .split(' ')
+          [pageDatum.page.split(' ').length - 1].toLowerCase()
       }
+      data.push(starData)
     }
-    return lastNames
+    return data
   }
 
   return (
@@ -99,7 +202,7 @@ export default function IndexPage() {
         )}
 
         <Space style={{ marginTop: '16px' }}>
-          <Link href="#stars" scroll={false}>
+          <Link href="#constellations" scroll={false}>
             <Button>SEE THE STARS</Button>
           </Link>
 
@@ -109,10 +212,12 @@ export default function IndexPage() {
         </Space>
       </Home>
 
-      <Constellations id="stars">
-        {getLastNames(pageData).map((name: string, i: number) => (
-          <Star key={i} lastName={name} />
-        ))}
+      <Constellations id="constellations">
+        {getStarData(pageData).map(
+          (datum: { page: string; top: string; left: string }, i: number) => (
+            <Star key={i} page={datum.page} top={datum.top} left={datum.left} />
+          )
+        )}
       </Constellations>
 
       <Credits>
@@ -123,9 +228,9 @@ export default function IndexPage() {
         <Row gutter={4}>
           <Col span={12} style={{ textAlign: 'right', fontWeight: 'bold' }}>
             <Space direction="vertical">
-              {creditsData.map((l, i) => (
+              {creditsData.map((datum, i) => (
                 <Typography.Text key={i} style={{ color: 'white' }}>
-                  {l[0]}
+                  {datum.page}
                 </Typography.Text>
               ))}
             </Space>
@@ -133,9 +238,9 @@ export default function IndexPage() {
 
           <Col span={12} style={{ textAlign: 'left' }}>
             <Space direction="vertical">
-              {creditsData.map((l, i) => (
+              {creditsData.map((datum, i) => (
                 <Typography.Text key={i} style={{ color: 'white' }}>
-                  {l[1]}
+                  {datum.author}
                 </Typography.Text>
               ))}
             </Space>

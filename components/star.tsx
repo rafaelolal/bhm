@@ -1,15 +1,20 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function Star(props: { lastName: string }) {
+export default function Star(props: {
+  page: string
+  top: string
+  left: string
+}) {
   return (
     <>
-      <Link href={`https:/ralmeida.dev/bhm/${props.lastName}`}>
+      <Link href={`https:/ralmeida.dev/bhm/${props.page}`}>
         <Image
-          src={`/images/people/${props.lastName}.jpg`}
+          alt={props.page}
           width={300}
           height={300}
-          alt={props.lastName}
+          src={`/images/people/${props.page}.jpg`}
+          style={{ position: 'absolute', top: props.top, left: props.left }}
         />
       </Link>
     </>
