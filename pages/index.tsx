@@ -235,6 +235,8 @@ export default function IndexPage() {
               color: 'white',
               fontFamily: 'galactic',
               fontSize: '2.5rem',
+              textAlign: 'center',
+              padding: '0 10px',
             }}
           >
             Black Historical Figures
@@ -255,39 +257,15 @@ export default function IndexPage() {
 
         <Space style={{ marginTop: '16px' }}>
           <Link href="#constellations" scroll={false} className="scrollLink">
-            <Button
-              style={{
-                backgroundColor: 'transparent',
-                fontSize: '1rem',
-                padding: '7px 20px',
-                width: 'fit-content',
-                height: 'fit-content',
-                color: 'white',
-                border: '2px solid #ffffff',
-                borderRadius: '0',
-                margin: '0 10px',
-              }}
-            >
-              See The Stars
-            </Button>
+            <div className="btn">See The Stars</div>
           </Link>
 
-          <Button
+          <div
             onClick={() => setIsShowingTitle(!isShowingTitle)}
-            style={{
-              backgroundColor: 'transparent',
-              fontSize: '1rem',
-              padding: '7px 20px',
-              width: 'fit-content',
-              height: 'fit-content',
-              color: 'white',
-              border: '2px solid #ffffff',
-              borderRadius: '0',
-              margin: '0 10px',
-            }}
+            className="btn"
           >
             {isShowingTitle ? 'About' : 'Back'}
-          </Button>
+          </div>
         </Space>
       </Home>
 
