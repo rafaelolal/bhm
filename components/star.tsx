@@ -8,14 +8,21 @@ export default function Star(props: {
 }) {
   return (
     <>
-      <Link href={`https:/ralmeida.dev/bhm/${props.page}`}>
-        <Image
-          alt={props.page}
-          width={300}
-          height={300}
-          src={`/images/people/${props.page}.jpg`}
-          style={{ position: 'absolute', top: props.top, left: props.left }}
-        />
+      <Link
+        className="star"
+        href={`https:/ralmeida.dev/bhm/${props.page}`}
+        style={{ position: 'absolute', top: props.top, left: props.left }}
+      >
+        <div>
+          <Image
+            alt={props.page}
+            width={300}
+            height={300}
+            src={`/images/people/${props.page}.jpg`}
+          />
+        </div>
+
+        <h6 style={{ textTransform: 'capitalize' }}>{props.page}</h6>
       </Link>
     </>
   )

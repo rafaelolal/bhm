@@ -1,5 +1,11 @@
 @import './node_modules/bootstrap/scss/bootstrap.scss';
 
+@font-face {
+  font-family: galactic;
+  src: url(/foundationtitleshand.semibold.ttf);
+  font-weight: semibold;
+}
+
 .backdrop {
   background-color: black;
   background-image: url('/images/stars.svg');
@@ -7,42 +13,196 @@
   background-size: 70% auto;
 }
 
+.constellation {
+  width: 80%;
+  height: auto;
+}
+
 .star {
-  object-position: top;
+  z-index: 1;
+  text-decoration: none;
+}
+.star:hover {
+  z-index: 100;
+}
+
+.star div {
+  border-radius: 50%;
+  width: 17px;
+  height: 17px;
+  padding: 0;
+  margin: 0;
+}
+
+.star:nth-child(3n + 2) div {
+  box-shadow: 0px 0px 15px 6px rgb(228, 183, 1);
+}
+
+.star:nth-child(3n + 3) div {
+  box-shadow: 0px 0px 15px 6px rgb(85, 157, 63);
+}
+
+.star:nth-child(3n + 1) div {
+  box-shadow: 0px 0px 15px 6px rgb(230, 12, 11);
+}
+
+.star div img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+
   border-radius: 50%;
   object-fit: cover;
   filter: brightness(0) invert(1);
   width: 17px;
   height: 17px;
-
-  transition: 0.3s ease-out;
+  transition: filter 0.7s, transform 0.2s, clip-path 0.2s;
 }
 
-.star:hover {
-  transform: scale(7);
+.star:hover div {
+  filter: drop-shadow(0px 0px 35px rgba(255, 255, 255, 1));
+}
+
+.star:hover:nth-child(2n + 1) div img {
+  border-radius: 0;
+  transform: scale(-7, 7);
+  clip-path: polygon(
+    41% 0%,
+    65% 27%,
+    100% 27.5%,
+    80% 57%,
+    92% 90%,
+    57% 80%,
+    28% 100%,
+    27% 68%,
+    0% 47%,
+    31% 36%
+  );
+
   filter: brightness(1) invert(0);
+  box-shadow: 0px 0px 10px 1px rgb(255, 255, 255);
+}
+.star:hover:nth-child(2n + 2) div img {
+  object-position: 0;
+  border-radius: 0;
+  transform: scale(7);
+  clip-path: polygon(
+    41% 0%,
+    65% 27%,
+    100% 27.5%,
+    80% 57%,
+    92% 90%,
+    57% 80%,
+    28% 100%,
+    27% 68%,
+    0% 47%,
+    31% 36%
+  );
+
+  filter: brightness(1) invert(0);
+  box-shadow: 0px 0px 10px 1px rgb(255, 255, 255);
 }
 
-.star:nth-child(3n + 1):hover {
-  box-shadow: 0px 0px 15px 6px rgb(230, 12, 11);
+/*clip-path: polygon(
+    50% 0%,
+    65% 40%,
+    100% 40%,
+    70% 65%,
+    80% 100%,
+    50% 80%,
+    20% 100%,
+    30% 65%,
+    0% 40%,
+    35% 40%
+  ); */
+
+.star h6 {
+  color: white;
+  padding-left: 25px;
+  font-size: 0.3 rem;
+  text-decoration: none;
+  text-shadow: 1px 0px 6px rgba(0, 0, 0, 1);
 }
 
-.star:nth-child(3n + 1) {
-  box-shadow: 0px 0px 15px 1px rgb(230, 12, 11);
+.star:hover h6 {
+  opacity: 0;
 }
 
-.star:nth-child(3n + 2):hover {
-  box-shadow: 0px 0px 15px 6px rgb(228, 183, 1);
+.sway {
+  animation: sway 7s infinite ease-in-out;
 }
 
-.star:nth-child(3n + 2) {
-  box-shadow: 0px 0px 15px 1px rgb(228, 183, 1);
+@keyframes sway {
+  0% {
+    transform: translate(0px, 5px);
+  }
+
+  50% {
+    transform: translate(0px, -10px);
+  }
+  100% {
+    transform: translate(0px, 5px);
+  }
 }
 
-.star:nth-child(3n + 3):hover {
-  box-shadow: 0px 0px 15px 6px rgb(85, 157, 63);
+@media (max-width: 450px) {
+  .fist {
+    width: 220px;
+    height: 220px;
+  }
 }
 
-.star:nth-child(3n + 3) {
-  box-shadow: 0px 0px 15px 1px rgb(85, 157, 63);
+.starCard:nth-child(3n + 2) div a {
+  filter: drop-shadow(0px 0px 35px rgb(228, 183, 1));
+}
+
+.starCard:nth-child(3n + 3) div a {
+  filter: drop-shadow(0px 0px 35px rgb(85, 157, 63));
+}
+
+.starCard:nth-child(3n + 1) div a {
+  filter: drop-shadow(0px 0px 35px rgb(230, 12, 11));
+}
+
+.starCard div a img {
+  filter: grayscale(100%);
+  clip-path: polygon(
+    41% 0%,
+    65% 27%,
+    100% 27.5%,
+    80% 57%,
+    92% 90%,
+    57% 80%,
+    28% 100%,
+    27% 68%,
+    0% 47%,
+    31% 36%
+  );
+}
+
+.starCard:nth-child(2n + 2) div {
+  transform: scale(-1, 1);
+}
+
+.starCard h6 {
+  color: white;
+  text-align: center;
+  font-size: 2rem;
+  text-transform: capitalize;
+}
+
+.starImg {
+  clip-path: polygon(
+    41% 0%,
+    65% 27%,
+    100% 27.5%,
+    80% 57%,
+    92% 90%,
+    57% 80%,
+    28% 100%,
+    27% 68%,
+    0% 47%,
+    31% 36%
+  );
 }

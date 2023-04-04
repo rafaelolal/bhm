@@ -4,121 +4,131 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import styled from 'styled-components'
+import StarCard from '@/components/starCard'
+
+// $(document).ready(function () {
+//   $("a.scrollLink").click(function (event) {
+//       event.preventDefault();
+//       $("html, body").animate({
+//           scrollTop: $($(this).attr("href")).offset().top
+//       }, 1000);
+//   });
+// });
 
 const pageData = [
   {
     page: 'Aretha Franklin',
     author: 'Edgar Pacheco',
-    top: '0%',
-    left: '0%',
+    top: '31.5%',
+    left: '17.5%',
   },
   {
     page: 'Beyonce Knowles Carter',
     author: 'Aditi Khedkar',
-    top: '0%',
-    left: '0%',
+    top: '37%',
+    left: '29%',
   },
   {
     page: 'Bob Marley',
     author: 'Dylan Sturr',
-    top: '0%',
-    left: '0%',
+    top: '60%',
+    left: '30.8%',
   },
   {
     page: 'Charles Mingus',
     author: 'Andy Zhu',
-    top: '0%',
-    left: '0%',
+    top: '89%',
+    left: '22%',
   },
   {
     page: 'Desmond "Etika" Amofah',
     author: 'Erick Jacomes',
-    top: '0%',
-    left: '0%',
+    top: '13.4%',
+    left: '44.3%',
   },
   {
     page: 'Frederick Douglass',
     author: 'Kevin Huang',
-    top: '0%',
-    left: '0%',
+    top: '88.3%',
+    left: '12.3%',
   },
   {
     page: 'Guion Bluford',
     author: 'Alex Pillar',
-    top: '0%',
-    left: '0%',
+    top: '63%',
+    left: '55.7%',
   },
   {
     page: 'Henrietta Lacks',
     author: 'Chelsey Tang',
-    top: '0%',
-    left: '0%',
+    top: '45.2%',
+    left: '88%',
   },
   {
     page: 'Jackie Robinson',
     author: 'John Inoa',
-    top: '0%',
-    left: '0%',
+    top: '23%',
+    left: '77.5%',
   },
   {
     page: 'Jesse Owens',
     author: 'Eric Bruckenstein',
-    top: '0%',
-    left: '0%',
+    top: '64%',
+    left: '0.8%',
   },
   {
     page: 'Malcolm X',
     author: 'Nate Kim',
-    top: '0%',
-    left: '0%',
+    top: '8.7%',
+    left: '52.5%',
   },
   {
     page: 'Marsha P. Johnson',
     author: 'Nicholas Panlilio',
     top: '0%',
-    left: '0%',
+    left: '43.3%',
   },
   {
     page: 'Michael Jackson',
     author: 'Will Kim',
-    top: '0%',
-    left: '0%',
+    top: '75.5%',
+    left: '0.3%',
   },
   {
     page: 'Shirley Chisholm',
     author: 'Mackenzie Nielsen',
-    top: '0%',
-    left: '0%',
+    top: '50%',
+    left: '99%',
   },
   {
     page: 'Josephine Baker',
     author: 'Nina Ignacio',
-    top: '0%',
-    left: '0%',
+    top: '43.4%',
+    left: '16.4%',
   },
   {
     page: 'Barack Obama',
     author: 'Tristan Florencio',
-    top: '0%',
-    left: '0%',
+    top: '10%',
+    left: '70%',
   },
   {
     page: 'Stevie Wonder',
     author: 'Miles Neal',
-    top: '0%',
-    left: '0%',
+    top: '37.4%',
+    left: '96%',
   },
   {
     page: 'Toussaint Louverture',
     author: 'Jose Tabuena',
-    top: '0%',
-    left: '0%',
+    top: '41%',
+    left: '50%',
   },
   {
     page: 'W. E. B. Du Bois',
     author: 'Cory Zhou',
-    top: '0%',
-    left: '0%',
+    top: '7%',
+    left: '32%',
   },
 ]
 pageData.sort((a, b) => a.page.localeCompare(b.page))
@@ -128,7 +138,7 @@ const creditsData = pageData
     return { page: data.page, author: data.author }
   })
   .concat([
-    { page: 'Home Page', author: 'Deejunae Lewis' },
+    { page: 'Home Page', author: 'Deejuanae Lewis' },
     { page: 'Home Page', author: 'Rafael Almeida' },
     { page: 'Server', author: 'Aaron Perrotta' },
   ])
@@ -139,17 +149,24 @@ const Home = styled.div`
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  position: relative;
+`
+const Sky = styled.div`
+  height: 100vh;
+  width: 100%;
 `
 
 const Constellations = styled.div`
-  height: 100vh;
+  margin: auto auto;
   position: relative;
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
 `
 
 const Credits = styled.div`
-  max-width: 720px;
+  width: 900px;
   margin: auto;
-  padding: 32px;
   height: 100vh;
 `
 
@@ -166,7 +183,7 @@ export default function IndexPage() {
         starData['page'] = 'beyonce'
       } else if (pageDatum.page == 'W. E. B. Du Bois') {
         starData['page'] = 'dubois'
-      } else if (pageDatum.page == 'Desmond Daniel "Etika" Amofah') {
+      } else if (pageDatum.page == 'Desmond "Etika" Amofah') {
         starData['page'] = 'etika'
       } else {
         starData['page'] = pageDatum.page
@@ -182,19 +199,54 @@ export default function IndexPage() {
     <>
       <Home>
         <Image
-          src="/images/blm.png"
-          width={300}
-          height={300}
+          src="/images/fist.svg"
+          className="fist"
+          width={400}
+          height={400}
           alt="Black Lives Matter fist symbol"
         />
 
+        <Image
+          src="/images/earth-planet.svg"
+          className="d-none d-lg-block"
+          width={378 * 0.5}
+          height={754 * 0.5}
+          alt="Planet"
+          style={{ position: 'absolute', top: '50%', left: '0' }}
+        />
+
+        <Image
+          src="/images/satellite.svg"
+          className="sway d-none d-lg-block"
+          width={200}
+          height={200}
+          alt="Planet"
+          style={{
+            animationDelay: '2s',
+            position: 'absolute',
+            top: '30%',
+            right: '10%',
+          }}
+        />
+
         {isShowingTitle ? (
-          <Typography.Title style={{ color: 'white' }}>
-            Black Excellence
+          <Typography.Title
+            style={{
+              color: 'white',
+              fontFamily: 'galactic',
+              fontSize: '2.5rem',
+            }}
+          >
+            Black Historical Figures
           </Typography.Title>
         ) : (
           <Typography.Text
-            style={{ color: 'white', textAlign: 'center', width: '197px' }}
+            style={{
+              color: 'white',
+              textAlign: 'center',
+              width: '200px',
+              margin: '10px',
+            }}
           >
             This is a collaborative project between the B-9/10 Web Design class
             to celebrate Black History Month
@@ -202,51 +254,133 @@ export default function IndexPage() {
         )}
 
         <Space style={{ marginTop: '16px' }}>
-          <Link href="#constellations" scroll={false}>
-            <Button>SEE THE STARS</Button>
+          <Link href="#constellations" scroll={false} className="scrollLink">
+            <Button
+              style={{
+                backgroundColor: 'transparent',
+                fontSize: '1rem',
+                padding: '7px 20px',
+                width: 'fit-content',
+                height: 'fit-content',
+                color: 'white',
+                border: '2px solid #ffffff',
+                borderRadius: '0',
+                margin: '0 10px',
+              }}
+            >
+              See The Stars
+            </Button>
           </Link>
 
-          <Button onClick={() => setIsShowingTitle(!isShowingTitle)}>
+          <Button
+            onClick={() => setIsShowingTitle(!isShowingTitle)}
+            style={{
+              backgroundColor: 'transparent',
+              fontSize: '1rem',
+              padding: '7px 20px',
+              width: 'fit-content',
+              height: 'fit-content',
+              color: 'white',
+              border: '2px solid #ffffff',
+              borderRadius: '0',
+              margin: '0 10px',
+            }}
+          >
             {isShowingTitle ? 'About' : 'Back'}
           </Button>
         </Space>
       </Home>
 
       <Constellations id="constellations">
-        {getStarData(pageData).map(
-          (datum: { page: string; top: string; left: string }, i: number) => (
-            <Star key={i} page={datum.page} top={datum.top} left={datum.left} />
-          )
-        )}
+        <div
+          className="card border-0 m-auto d-none d-lg-block"
+          style={{
+            backgroundColor: 'transparent',
+            width: '80%',
+            height: 'auto',
+          }}
+        >
+          <img
+            src="/images/aquariusConstellation.svg"
+            className="card-img"
+            alt="Persons Image"
+          ></img>
+          <div className="card-img-overlay p-0">
+            {getStarData(pageData).map(
+              (
+                datum: { page: string; top: string; left: string },
+                i: number
+              ) => (
+                <Star
+                  key={i}
+                  page={datum.page}
+                  top={datum.top}
+                  left={datum.left}
+                />
+              )
+            )}
+          </div>
+        </div>
+
+        <div className="container d-block d-lg-none">
+          <div className="row row-cols-1 row-cols-md-2">
+            {getStarData(pageData).map((datum: { page: string }, i: number) => (
+              <StarCard key={i} page={datum.page} />
+            ))}
+          </div>
+        </div>
       </Constellations>
 
-      <Credits>
-        <Typography.Title style={{ color: 'white', textAlign: 'center' }}>
-          Credits
-        </Typography.Title>
+      <Constellations>
+        <Image
+          src="/images/earth-planet2.svg"
+          className="d-none d-lg-block"
+          width={378 * 0.7}
+          height={754 * 0.7}
+          alt="Planet"
+          style={{ position: 'absolute', top: '30%', right: '0' }}
+        />
+        <Image
+          src="/images/astroid.svg"
+          className="d-none d-lg-block sway"
+          width={150}
+          height={150}
+          alt="Astroid"
+          style={{
+            animationDelay: '2s',
+            position: 'absolute',
+            top: '5%',
+            left: '10%',
+          }}
+        />
+        <Credits>
+          <Typography.Title style={{ color: 'white', textAlign: 'center' }}>
+            Credits
+          </Typography.Title>
 
-        <Row gutter={4}>
-          <Col span={12} style={{ textAlign: 'right', fontWeight: 'bold' }}>
-            <Space direction="vertical">
-              {creditsData.map((datum, i) => (
-                <Typography.Text key={i} style={{ color: 'white' }}>
-                  {datum.page}
-                </Typography.Text>
-              ))}
-            </Space>
-          </Col>
+          <Row gutter={1}>
+            <Col span={12} style={{ textAlign: 'right', fontWeight: 'bold' }}>
+              <Space direction="vertical">
+                {creditsData.map((datum, i) => (
+                  <Typography.Text key={i} style={{ color: 'white' }}>
+                    {datum.page}
+                  </Typography.Text>
+                ))}
+              </Space>
+            </Col>
 
-          <Col span={12} style={{ textAlign: 'left' }}>
-            <Space direction="vertical">
-              {creditsData.map((datum, i) => (
-                <Typography.Text key={i} style={{ color: 'white' }}>
-                  {datum.author}
-                </Typography.Text>
-              ))}
-            </Space>
-          </Col>
-        </Row>
-      </Credits>
+            <Col span={12} style={{ textAlign: 'left', paddingLeft: '10px' }}>
+              <Space direction="vertical">
+                {creditsData.map((datum, i) => (
+                  <Typography.Text key={i} style={{ color: 'white' }}>
+                    {datum.author}
+                  </Typography.Text>
+                ))}
+              </Space>
+            </Col>
+          </Row>
+        </Credits>
+      </Constellations>
     </>
   )
 }
