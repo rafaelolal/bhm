@@ -16,14 +16,14 @@ export default function StarCard(props: { page: string }) {
             width: 'fit-content',
           }}
         >
-          <Link href={`https:/ralmeida.dev/bhm/${props.page}`}>
+          <a href={`https:/ralmeida.dev/${props.page}`}>
             <Image
               alt={props.page}
               width={300}
               height={300}
               src={`/bhm/images/people/${props.page}.jpg`}
             />
-          </Link>
+          </a>
         </div>
 
         <h6>{props.page}</h6>

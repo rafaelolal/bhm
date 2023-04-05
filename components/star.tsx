@@ -9,7 +9,7 @@ export default function Star(props: {
 }) {
   return (
     <>
-      <Link
+      <a
         className="star"
         href={`https:/ralmeida.dev/${props.page}`}
         style={{ position: 'absolute', top: props.top, left: props.left }}
@@ -24,7 +24,7 @@ export default function Star(props: {
         </div>
 
         <h6>{props.name}</h6>
-      </Link>
+      </a>
     </>
   )
 }
