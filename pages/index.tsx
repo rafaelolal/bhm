@@ -207,8 +207,8 @@ export default function IndexPage() {
         <Image
           src="/bhm/images/fist.svg"
           className="fist"
-          sizes="(max-width: 768px) 250px,
-              (max-width: 1080px) 400px"
+          width={400}
+          height={400}
           alt="Black Lives Matter fist symbol"
         />
 
