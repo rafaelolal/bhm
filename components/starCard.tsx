@@ -21,7 +21,7 @@ export default function StarCard(props: { page: string }) {
               alt={props.page}
               width={300}
               height={300}
-              src={`/images/people/${props.page}.jpg`}
+              src={`/bhm/images/people/${props.page}.jpg`}
             />
           </Link>
         </div>

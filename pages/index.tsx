@@ -1,10 +1,11 @@
 import Star from '@/components/star'
-import { Typography, Button, Space, Row, Col } from 'antd'
+import { Typography, Space, Row, Col } from 'antd'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import styled from 'styled-components'
 import StarCard from '@/components/starCard'
+import Head from 'next/head'
 
 // $(document).ready(function () {
 //   $("a.scrollLink").click(function (event) {
@@ -151,10 +152,6 @@ const Home = styled.div`
   height: 100vh;
   position: relative;
 `
-const Sky = styled.div`
-  height: 100vh;
-  width: 100%;
-`
 
 const Constellations = styled.div`
   margin: auto auto;
@@ -176,9 +173,14 @@ export default function IndexPage() {
   const getStarData = (
     pageData: { page: string; author: string; top: string; left: string }[]
   ) => {
-    const data: { page: string; top: string; left: string }[] = []
+    const data: { page: string; top: string; left: string; name: string }[] = []
     for (const pageDatum of pageData) {
-      const starData = { page: '', top: pageDatum.top, left: pageDatum.left }
+      const starData = {
+        page: '',
+        top: pageDatum.top,
+        left: pageDatum.left,
+        name: pageDatum.page,
+      }
       if (pageDatum.page == 'Beyonce Knowles Carter') {
         starData['page'] = 'beyonce'
       } else if (pageDatum.page == 'W. E. B. Du Bois') {
@@ -197,9 +199,13 @@ export default function IndexPage() {
 
   return (
     <>
+      <Head>
+        <title>Black History Month</title>
+      </Head>
+
       <Home>
         <Image
-          src="/images/fist.svg"
+          src="/bhm/images/fist.svg"
           className="fist"
           width={400}
           height={400}
@@ -207,7 +213,7 @@ export default function IndexPage() {
         />
 
         <Image
-          src="/images/earth-planet.svg"
+          src="/bhm/images/earth-planet.svg"
           className="d-none d-lg-block"
           width={378 * 0.5}
           height={754 * 0.5}
@@ -216,7 +222,7 @@ export default function IndexPage() {
         />
 
         <Image
-          src="/images/satellite.svg"
+          src="/bhm/images/satellite.svg"
           className="sway d-none d-lg-block"
           width={200}
           height={200}
@@ -279,18 +285,25 @@ export default function IndexPage() {
           }}
         >
           <img
-            src="/images/aquariusConstellation.svg"
+            src="/bhm/images/aquariusConstellation.svg"
             className="card-img"
             alt="Persons Image"
-          ></img>
+          />
+
           <div className="card-img-overlay p-0">
             {getStarData(pageData).map(
               (
-                datum: { page: string; top: string; left: string },
+                datum: {
+                  page: string
+                  top: string
+                  left: string
+                  name: string
+                },
                 i: number
               ) => (
                 <Star
                   key={i}
+                  name={datum.name}
                   page={datum.page}
                   top={datum.top}
                   left={datum.left}
@@ -311,7 +324,7 @@ export default function IndexPage() {
 
       <Constellations>
         <Image
-          src="/images/earth-planet2.svg"
+          src="/bhm/images/earth-planet2.svg"
           className="d-none d-lg-block"
           width={378 * 0.7}
           height={754 * 0.7}
@@ -319,7 +332,7 @@ export default function IndexPage() {
           style={{ position: 'absolute', top: '30%', right: '0' }}
         />
         <Image
-          src="/images/astroid.svg"
+          src="/bhm/images/astroid.svg"
           className="d-none d-lg-block sway"
           width={150}
           height={150}

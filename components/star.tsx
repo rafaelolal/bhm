@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Star(props: {
+  name: string
   page: string
   top: string
   left: string
@@ -18,11 +19,11 @@ export default function Star(props: {
             alt={props.page}
             width={300}
             height={300}
-            src={`/images/people/${props.page}.jpg`}
+            src={`/bhm/images/people/${props.page}.jpg`}
           />
         </div>
 
-        <h6 style={{ textTransform: 'capitalize' }}>{props.page}</h6>
+        <h6>{props.name}</h6>
       </Link>
     </>
   )
