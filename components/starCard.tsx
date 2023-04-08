@@ -16,7 +16,7 @@ export default function StarCard(props: { page: string }) {
             width: 'fit-content',
           }}
         >
-          <a href={`https:/ralmeida.dev/${props.page}`}>
+          <a href={`https://ralmeida.dev/${props.page}`}>
             <Image
               alt={props.page}
               width={300}

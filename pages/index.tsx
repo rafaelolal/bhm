@@ -141,7 +141,7 @@ const creditsData = pageData
   .concat([
     { page: 'Home Page', author: 'Deejuanae Lewis' },
     { page: 'Home Page', author: 'Rafael Almeida' },
-    { page: 'Server', author: 'Aaron Perrotta' },
+    { page: 'Server', author: 'Almeida & Perrotta' },
   ])
 
 const Home = styled.div`

@@ -11,7 +11,7 @@ export default function Star(props: {
     <>
       <a
         className="star"
-        href={`https:/ralmeida.dev/${props.page}`}
+        href={`https://ralmeida.dev/${props.page}`}
         style={{ position: 'absolute', top: props.top, left: props.left }}
       >
         <div>
